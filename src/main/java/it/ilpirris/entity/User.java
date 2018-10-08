@@ -26,6 +26,4 @@ public class User {
 		this.balance = balance;
 	}
 	
-	
-
 }

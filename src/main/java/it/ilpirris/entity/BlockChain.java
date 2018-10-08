@@ -33,6 +33,11 @@ public class BlockChain {
 	public void setPendingTransactions(ArrayList<Transaction> pendingTransactions) {
 		this.pendingTransactions = pendingTransactions;
 	}
+	
+	public void addPendingTransaction(Transaction transaction)
+	{
+		this.pendingTransactions.add(transaction);
+	}
 
 	public int getDifficulty() {
 		return difficulty;
@@ -41,6 +46,4 @@ public class BlockChain {
 	public void setDifficulty(int blockChainDifficulty) {
 		this.difficulty = blockChainDifficulty;
 	}
-	
-
 }

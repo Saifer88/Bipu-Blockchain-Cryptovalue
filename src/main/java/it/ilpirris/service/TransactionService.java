@@ -3,27 +3,31 @@ package it.ilpirris.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.ilpirris.entity.BlockChain;
 import it.ilpirris.entity.Transaction;
 import it.ilpirris.entity.User;
+import it.ilpirris.exception.NotEnoughMoneyException;
+import it.ilpirris.factory.BlockChainFactory;
 
 @Service
 public class TransactionService {
 	
 	@Autowired
-	BlockChain blockChain;
+	BlockChainFactory factory;
 	
-	public void handleTransation(Transaction transaction)
+	public void handleTransation(Transaction transaction) throws NotEnoughMoneyException
 	{	
-		transaction.getSender().getBalance();
-		blockChain.getPendingTransactions().add(transaction);
+		if (transaction.getSender().getBalance() < transaction.getAmount()) 
+			throw new NotEnoughMoneyException();
+		
+		factory.getBlockChain().addPendingTransaction(transaction);
 	}
 
 	
 	public User getBalance(User user)
 	{
 		user.setBalance(0);
-		blockChain
+		factory
+			.getBlockChain()
 			.getBlocks()
 			.forEach(e -> 
 				{

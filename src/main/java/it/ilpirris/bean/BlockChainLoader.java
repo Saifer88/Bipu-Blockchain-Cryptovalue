@@ -1,29 +1,32 @@
 package it.ilpirris.bean;
 
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import it.ilpirris.entity.BlockChain;
+import it.ilpirris.factory.BlockChainFactory;
 
 @Configuration
 public class BlockChainLoader {
 
-	BlockChain blockChain;
+	BlockChainFactory factory;
 	
 	
 	@PostConstruct
 	public void init()
 	{
-		this.blockChain = new BlockChain();
+		this.factory = new BlockChainFactory();
 	}
 	
 	
 	@Bean
-	public BlockChain blockChain()
+	public BlockChainFactory blockChainFactory()
 	{
-		return this.blockChain;
+		return this.factory;
 	}
+	
+
 	
 }

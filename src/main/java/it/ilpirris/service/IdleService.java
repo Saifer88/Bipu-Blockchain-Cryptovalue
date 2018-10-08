@@ -6,28 +6,29 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import it.ilpirris.entity.BlockChain;
+import it.ilpirris.factory.BlockChainFactory;
 import it.ilpirris.runnable.BlockGenerator;
 
 @Service
 public class IdleService {
 	
-	
-	
 	@Autowired
-	private BlockChain blockChain;
+	private BlockChainFactory blockChainFactory;
 	
 	
 	private BlockGenerator blockGenerator;
-	private Thread generator;
 	
 	
 	@PostConstruct
 	public void startingIdle()
 	{
-		this.blockGenerator = new BlockGenerator(this.blockChain);
+		this.blockGenerator = new BlockGenerator(this.blockChainFactory);
 		
-		this.generator = new Thread(blockGenerator);
-		generator.start();
+		
+		this.blockChainFactory.setGenerator(new Thread(blockGenerator));
+		
+		this.blockChainFactory.startMining();
+		
+		
 	}
 }
