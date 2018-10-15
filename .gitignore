@@ -13,6 +13,7 @@ mvn
 mvnw.cmd
 .mvn
 .attach_pid10787
+.tern-project
 
 
 ### IntelliJ IDEA ###

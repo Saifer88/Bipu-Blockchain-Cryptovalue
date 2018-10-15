@@ -1,0 +1,51 @@
+<div>
+  <ngb-alert [@simpleFadeAnimation]="'in'" *ngIf="notifyNewBlock" type="danger" (close)="successMessage = null" >{{ successMessage }}</ngb-alert>
+  <div class="row">
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+    </div>
+    <div class="col-4">
+      <p>
+        Difficoltà Hashing: {{blockChain.difficulty}}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4" style="padding:12px;" [@simpleFadeAnimation]="'in'" *ngFor="let block of blockChain.blocks; let i = index">
+      <div [ngClass]="'card border-primary'">
+        <h5 class="card-header bg-info text-white">Block {{i}} <span class="float-right">nonce: {{block.nonce}}</span></h5>
+        <div class="card-body">
+          <h6 class="card-title">Hash</h6>
+          <p class="card-text">{{block.hash | slice:0:40}}...</p>
+          <h6 class="card-title">Previous Hash</h6>
+          <p class="card-text">
+            {{block.previousHash | slice:0:40}}...
+          </p>
+          <button class="btn btn-primary" (click)="block.collapsed = !block.collapsed">Show Transactions</button>
+          <div [@simpleFadeAnimation]="'in'" class="card-body"  aria-expanded="false" aria-controls="collapse" [ngbCollapse]="!block.collapsed">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">from</th>
+                  <th scope="col">to</th>
+                  <th scope="col">amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let transaction of block.transactions; let j = index">
+                  <th scope="row">{{j}}</th>
+                  <td>{{transaction.sender.name}}</td>
+                  <td>{{transaction.receiver.name}} </td>
+                  <td>{{transaction.amount}}Þ</td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+</div>

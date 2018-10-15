@@ -40,7 +40,7 @@ public class BlockGenerator implements Runnable
 	{
 		Block lastBlock = blockChain.getBlocks().get(blockChain.getBlocks().size() - 1);
 		Block block = new Block( BlockGenerator.serviceOwner, lastBlock.getHash(), blockChain.getPendingTransactions());
-		blockChain.setPendingTransactions(new ArrayList<>());
+		//blockChain.setPendingTransactions(new ArrayList<>());
 		mineHash(blockChain.getDifficulty(), block);
 		logger.info("Block Found " + block.getHash() );
 

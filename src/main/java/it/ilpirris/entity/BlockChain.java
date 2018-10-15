@@ -9,7 +9,7 @@ public class BlockChain {
 	private ArrayList<Block> blocks = new ArrayList<>();
 	private ArrayList<Transaction> pendingTransactions = new ArrayList<>();
 	
-	private int difficulty = 7;
+	private int difficulty = 6;
 
 	public BlockChain()
 	{

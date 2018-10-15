@@ -26,10 +26,12 @@ public class Block {
 		this.previousHash = previousHash;
 		this.transactions = new ArrayList<>();
 		
-		Transaction rewardTransaction = new Transaction(new User("BlockchainSystem"), new User(BlockGenerator.serviceOwner), BlockGenerator.newBlockReward);
+		Transaction rewardTransaction = new Transaction(new User("RWSystem"), new User(BlockGenerator.serviceOwner), BlockGenerator.newBlockReward);
 		
 		pendingTransactions.add(rewardTransaction);
 		addTransactions(pendingTransactions);
+		
+		pendingTransactions.clear();
 		
 		this.transactions.forEach(this::appendAggregate);
 		generateHash();

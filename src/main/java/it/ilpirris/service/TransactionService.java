@@ -16,6 +16,8 @@ public class TransactionService {
 	
 	public void handleTransation(Transaction transaction) throws NotEnoughMoneyException
 	{	
+		getBalance(transaction.getSender());
+		
 		if (transaction.getSender().getBalance() < transaction.getAmount()) 
 			throw new NotEnoughMoneyException();
 		
