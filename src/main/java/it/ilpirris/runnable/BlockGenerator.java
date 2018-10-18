@@ -1,7 +1,6 @@
 package it.ilpirris.runnable;
 
 
-import java.util.ArrayList;
 import java.util.Collections;
 
 import org.apache.logging.log4j.LogManager;
